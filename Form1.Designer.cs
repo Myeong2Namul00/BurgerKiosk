@@ -37,13 +37,13 @@
             rbtnBulgogi = new RadioButton();
             rbtnHamburger = new RadioButton();
             boxSide = new GroupBox();
-            boxList = new GroupBox();
-            chkFries = new CheckBox();
-            chkCoke = new CheckBox();
-            chkSauce = new CheckBox();
             chkCheese = new CheckBox();
-            lstResult = new ListBox();
+            chkSauce = new CheckBox();
+            chkCoke = new CheckBox();
+            chkFries = new CheckBox();
+            boxList = new GroupBox();
             lblTotal = new Label();
+            lstOrder = new ListBox();
             btnOrder = new Button();
             btnReset = new Button();
             boxBurgerSel.SuspendLayout();
@@ -124,6 +124,7 @@
             rbtnChicken.TabStop = true;
             rbtnChicken.Text = "치킨버거";
             rbtnChicken.UseVisualStyleBackColor = true;
+            rbtnChicken.CheckedChanged += rbtnChicken_CheckedChanged;
             // 
             // rbtnBulgogi
             // 
@@ -136,6 +137,7 @@
             rbtnBulgogi.TabStop = true;
             rbtnBulgogi.Text = "불고기버거";
             rbtnBulgogi.UseVisualStyleBackColor = true;
+            rbtnBulgogi.CheckedChanged += rbtnBulgogi_CheckedChanged;
             // 
             // rbtnHamburger
             // 
@@ -148,6 +150,7 @@
             rbtnHamburger.TabStop = true;
             rbtnHamburger.Text = "햄버거";
             rbtnHamburger.UseVisualStyleBackColor = true;
+            rbtnHamburger.CheckedChanged += rbtnHamburger_CheckedChanged;
             // 
             // boxSide
             // 
@@ -165,41 +168,17 @@
             boxSide.TabStop = false;
             boxSide.Text = "추가 옵션";
             // 
-            // boxList
+            // chkCheese
             // 
-            boxList.Controls.Add(lblTotal);
-            boxList.Controls.Add(lstResult);
-            boxList.FlatStyle = FlatStyle.Flat;
-            boxList.Font = new Font("나눔고딕", 24F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            boxList.ForeColor = Color.Red;
-            boxList.Location = new Point(827, 116);
-            boxList.Name = "boxList";
-            boxList.Size = new Size(406, 436);
-            boxList.TabIndex = 3;
-            boxList.TabStop = false;
-            boxList.Text = "주문 내역";
-            // 
-            // chkFries
-            // 
-            chkFries.AutoSize = true;
-            chkFries.ForeColor = Color.Black;
-            chkFries.Location = new Point(26, 70);
-            chkFries.Name = "chkFries";
-            chkFries.Size = new Size(158, 40);
-            chkFries.TabIndex = 0;
-            chkFries.Text = "감자튀김";
-            chkFries.UseVisualStyleBackColor = true;
-            // 
-            // chkCoke
-            // 
-            chkCoke.AutoSize = true;
-            chkCoke.ForeColor = Color.Black;
-            chkCoke.Location = new Point(26, 166);
-            chkCoke.Name = "chkCoke";
-            chkCoke.Size = new Size(96, 40);
-            chkCoke.TabIndex = 1;
-            chkCoke.Text = "콜라";
-            chkCoke.UseVisualStyleBackColor = true;
+            chkCheese.AutoSize = true;
+            chkCheese.ForeColor = Color.Black;
+            chkCheese.Location = new Point(26, 260);
+            chkCheese.Name = "chkCheese";
+            chkCheese.Size = new Size(168, 40);
+            chkCheese.TabIndex = 3;
+            chkCheese.Text = "치즈 추가";
+            chkCheese.UseVisualStyleBackColor = true;
+            chkCheese.CheckedChanged += chkCheese_CheckedChanged;
             // 
             // chkSauce
             // 
@@ -211,26 +190,45 @@
             chkSauce.TabIndex = 2;
             chkSauce.Text = "소스 추가";
             chkSauce.UseVisualStyleBackColor = true;
+            chkSauce.CheckedChanged += chkSauce_CheckedChanged;
             // 
-            // chkCheese
+            // chkCoke
             // 
-            chkCheese.AutoSize = true;
-            chkCheese.ForeColor = Color.Black;
-            chkCheese.Location = new Point(26, 260);
-            chkCheese.Name = "chkCheese";
-            chkCheese.Size = new Size(168, 40);
-            chkCheese.TabIndex = 3;
-            chkCheese.Text = "치즈 추가";
-            chkCheese.UseVisualStyleBackColor = true;
+            chkCoke.AutoSize = true;
+            chkCoke.ForeColor = Color.Black;
+            chkCoke.Location = new Point(26, 166);
+            chkCoke.Name = "chkCoke";
+            chkCoke.Size = new Size(96, 40);
+            chkCoke.TabIndex = 1;
+            chkCoke.Text = "콜라";
+            chkCoke.UseVisualStyleBackColor = true;
+            chkCoke.CheckedChanged += chkCoke_CheckedChanged;
             // 
-            // lstResult
+            // chkFries
             // 
-            lstResult.BorderStyle = BorderStyle.FixedSingle;
-            lstResult.FormattingEnabled = true;
-            lstResult.Location = new Point(26, 49);
-            lstResult.Name = "lstResult";
-            lstResult.Size = new Size(347, 290);
-            lstResult.TabIndex = 0;
+            chkFries.AutoSize = true;
+            chkFries.ForeColor = Color.Black;
+            chkFries.Location = new Point(26, 70);
+            chkFries.Name = "chkFries";
+            chkFries.Size = new Size(158, 40);
+            chkFries.TabIndex = 0;
+            chkFries.Text = "감자튀김";
+            chkFries.UseVisualStyleBackColor = true;
+            chkFries.CheckedChanged += chkFries_CheckedChanged;
+            // 
+            // boxList
+            // 
+            boxList.Controls.Add(lblTotal);
+            boxList.Controls.Add(lstOrder);
+            boxList.FlatStyle = FlatStyle.Flat;
+            boxList.Font = new Font("나눔고딕", 24F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            boxList.ForeColor = Color.Red;
+            boxList.Location = new Point(827, 116);
+            boxList.Name = "boxList";
+            boxList.Size = new Size(406, 436);
+            boxList.TabIndex = 3;
+            boxList.TabStop = false;
+            boxList.Text = "주문 내역";
             // 
             // lblTotal
             // 
@@ -241,6 +239,15 @@
             lblTotal.Size = new Size(174, 43);
             lblTotal.TabIndex = 1;
             lblTotal.Text = "주문 금액";
+            // 
+            // lstOrder
+            // 
+            lstOrder.BorderStyle = BorderStyle.FixedSingle;
+            lstOrder.FormattingEnabled = true;
+            lstOrder.Location = new Point(26, 49);
+            lstOrder.Name = "lstOrder";
+            lstOrder.Size = new Size(347, 290);
+            lstOrder.TabIndex = 0;
             // 
             // btnOrder
             // 
@@ -254,6 +261,7 @@
             btnOrder.TabIndex = 4;
             btnOrder.Text = "주문하기";
             btnOrder.UseVisualStyleBackColor = false;
+            btnOrder.Click += btnOrder_Click;
             // 
             // btnReset
             // 
@@ -267,6 +275,7 @@
             btnReset.TabIndex = 5;
             btnReset.Text = "초기화";
             btnReset.UseVisualStyleBackColor = false;
+            btnReset.Click += btnReset_Click;
             // 
             // Form1
             // 
@@ -313,7 +322,7 @@
         private CheckBox chkCoke;
         private CheckBox chkFries;
         private Label lblTotal;
-        private ListBox lstResult;
+        private ListBox lstOrder;
         private Button btnOrder;
         private Button btnReset;
     }
