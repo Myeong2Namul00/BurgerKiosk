@@ -47,6 +47,7 @@
             btnOrder = new Button();
             btnReset = new Button();
             lblError = new Label();
+            lblKeyHelp = new Label();
             boxBurgerSel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picChicken).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBulgogi).BeginInit();
@@ -62,7 +63,7 @@
             lblTitle.Location = new Point(28, 26);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(550, 74);
-            lblTitle.TabIndex = 0;
+            lblTitle.TabIndex = 5;
             lblTitle.Text = "버거 주문 키오스크";
             // 
             // boxBurgerSel
@@ -79,7 +80,7 @@
             boxBurgerSel.Location = new Point(31, 116);
             boxBurgerSel.Name = "boxBurgerSel";
             boxBurgerSel.Size = new Size(422, 535);
-            boxBurgerSel.TabIndex = 1;
+            boxBurgerSel.TabIndex = 2;
             boxBurgerSel.TabStop = false;
             boxBurgerSel.Text = "메뉴 선택";
             // 
@@ -165,7 +166,7 @@
             boxSide.Location = new Point(472, 116);
             boxSide.Name = "boxSide";
             boxSide.Size = new Size(340, 436);
-            boxSide.TabIndex = 2;
+            boxSide.TabIndex = 0;
             boxSide.TabStop = false;
             boxSide.Text = "추가 옵션";
             // 
@@ -227,7 +228,7 @@
             boxList.Location = new Point(827, 116);
             boxList.Name = "boxList";
             boxList.Size = new Size(406, 416);
-            boxList.TabIndex = 3;
+            boxList.TabIndex = 2;
             boxList.TabStop = false;
             boxList.Text = "주문 내역";
             // 
@@ -260,7 +261,7 @@
             btnOrder.Location = new Point(827, 567);
             btnOrder.Name = "btnOrder";
             btnOrder.Size = new Size(406, 84);
-            btnOrder.TabIndex = 4;
+            btnOrder.TabIndex = 3;
             btnOrder.Text = "주문하기";
             btnOrder.UseVisualStyleBackColor = false;
             btnOrder.Click += btnOrder_Click;
@@ -274,7 +275,7 @@
             btnReset.Location = new Point(472, 567);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(340, 84);
-            btnReset.TabIndex = 5;
+            btnReset.TabIndex = 4;
             btnReset.Text = "초기화";
             btnReset.UseVisualStyleBackColor = false;
             btnReset.Click += btnReset_Click;
@@ -288,9 +289,20 @@
             lblError.Location = new Point(828, 540);
             lblError.Name = "lblError";
             lblError.Size = new Size(111, 21);
-            lblError.TabIndex = 6;
+            lblError.TabIndex = 7;
             lblError.Text = "에러 메시지";
             lblError.Visible = false;
+            // 
+            // lblKeyHelp
+            // 
+            lblKeyHelp.AutoSize = true;
+            lblKeyHelp.Font = new Font("나눔고딕", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblKeyHelp.Location = new Point(985, 9);
+            lblKeyHelp.Name = "lblKeyHelp";
+            lblKeyHelp.Size = new Size(143, 24);
+            lblKeyHelp.TabIndex = 6;
+            lblKeyHelp.Text = "도움말 텍스트";
+            lblKeyHelp.TextAlign = ContentAlignment.TopRight;
             // 
             // Form1
             // 
@@ -298,6 +310,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(1264, 681);
+            Controls.Add(lblKeyHelp);
             Controls.Add(lblError);
             Controls.Add(btnReset);
             Controls.Add(btnOrder);
@@ -308,6 +321,7 @@
             Name = "Form1";
             Text = "BurgerKiosk";
             Load += Form1_Load;
+            KeyDown += Form1_KeyDown;
             boxBurgerSel.ResumeLayout(false);
             boxBurgerSel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picChicken).EndInit();
@@ -342,5 +356,6 @@
         private Button btnOrder;
         private Button btnReset;
         private Label lblError;
+        private Label lblKeyHelp;
     }
 }
