@@ -46,7 +46,6 @@
             lstOrder = new ListBox();
             btnOrder = new Button();
             btnReset = new Button();
-            lblError = new Label();
             lblKeyHelp = new Label();
             boxBurgerSel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picChicken).BeginInit();
@@ -227,7 +226,7 @@
             boxList.ForeColor = Color.Red;
             boxList.Location = new Point(827, 116);
             boxList.Name = "boxList";
-            boxList.Size = new Size(406, 416);
+            boxList.Size = new Size(406, 436);
             boxList.TabIndex = 2;
             boxList.TabStop = false;
             boxList.Text = "주문 내역";
@@ -235,11 +234,11 @@
             // lblTotal
             // 
             lblTotal.AutoSize = true;
-            lblTotal.Font = new Font("나눔고딕", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblTotal.Font = new Font("나눔고딕", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
             lblTotal.ForeColor = Color.Black;
-            lblTotal.Location = new Point(19, 356);
+            lblTotal.Location = new Point(9, 389);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(174, 43);
+            lblTotal.Size = new Size(136, 34);
             lblTotal.TabIndex = 1;
             lblTotal.Text = "주문 금액";
             // 
@@ -249,7 +248,7 @@
             lstOrder.FormattingEnabled = true;
             lstOrder.Location = new Point(26, 49);
             lstOrder.Name = "lstOrder";
-            lstOrder.Size = new Size(347, 290);
+            lstOrder.Size = new Size(347, 326);
             lstOrder.TabIndex = 0;
             // 
             // btnOrder
@@ -280,19 +279,6 @@
             btnReset.UseVisualStyleBackColor = false;
             btnReset.Click += btnReset_Click;
             // 
-            // lblError
-            // 
-            lblError.AutoSize = true;
-            lblError.FlatStyle = FlatStyle.Flat;
-            lblError.Font = new Font("나눔고딕", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(828, 540);
-            lblError.Name = "lblError";
-            lblError.Size = new Size(111, 21);
-            lblError.TabIndex = 7;
-            lblError.Text = "에러 메시지";
-            lblError.Visible = false;
-            // 
             // lblKeyHelp
             // 
             lblKeyHelp.AutoSize = true;
@@ -311,7 +297,6 @@
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(1264, 681);
             Controls.Add(lblKeyHelp);
-            Controls.Add(lblError);
             Controls.Add(btnReset);
             Controls.Add(btnOrder);
             Controls.Add(boxList);
@@ -355,7 +340,6 @@
         private ListBox lstOrder;
         private Button btnOrder;
         private Button btnReset;
-        private Label lblError;
         private Label lblKeyHelp;
     }
 }

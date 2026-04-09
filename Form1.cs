@@ -26,15 +26,16 @@ namespace BurgerKiosk
             sidePrice = 0;
             refreshTotalPrice();
 
-            lblKeyHelp.Text = "위아래 방향키로 메뉴 이동\n스페이스바로 선택/해제\n엔터키로 주문\nR키로 초기화";
+            //lblKeyHelp.Text = "위아래 방향키로 메뉴 이동\n스페이스바로 선택/해제\n엔터키로 주문\nR키로 초기화";
+            lblKeyHelp.Visible = false;
         }
 
         private void refreshTotalPrice()
         {
             price = burgerPrice + sidePrice;
-            lblTotal.Text = $"주문 금액 : " + price.ToString("N0");
-            lblError.Visible = false;
-            refreshOrderList();
+            lblTotal.Text = $"주문 금액 : " + price.ToString("N0") + "원";
+            lblTotal.ForeColor = Color.Black;
+            
         }
 
         private void refreshOrderList()
@@ -65,17 +66,17 @@ namespace BurgerKiosk
             if (rbtnHamburger.Checked)
             {
                 burgerPrice = 3000;
-                burgerType = "햄버거";
+                burgerType = "햄버거 3,000원";
             }
             else if (rbtnBulgogi.Checked)
             {
                 burgerPrice = 3500;
-                burgerType = "불고기버거";
+                burgerType = "불고기버거 3,500원";
             }
             else if (rbtnChicken.Checked)
             {
                 burgerPrice = 4000;
-                burgerType = "치킨버거";
+                burgerType = "치킨버거 4,000원";
             }
             refreshTotalPrice();
         }
@@ -87,22 +88,22 @@ namespace BurgerKiosk
             if (chkFries.Checked)
             {
                 sidePrice += 1500;
-                sideList.Add("감자튀김");
+                sideList.Add("감자튀김 1,500원");
             }
             if (chkCoke.Checked)
             {
                 sidePrice += 1000;
-                sideList.Add("콜라");
+                sideList.Add("콜라 1,000원");
             }
             if (chkCheese.Checked)
             {
                 sidePrice += 800;
-                sideList.Add("치즈 추가");
+                sideList.Add("치즈 추가 800원");
             }
             if (chkSauce.Checked)
             {
                 sidePrice += 500;
-                sideList.Add("소스 추가");
+                sideList.Add("소스 추가 500원");
             }
             refreshTotalPrice();
         }
@@ -120,14 +121,16 @@ namespace BurgerKiosk
         private void chkCheese_CheckedChanged(object sender, EventArgs e) { setSideOrder(); }
         private void chkSauce_CheckedChanged(object sender, EventArgs e) { setSideOrder(); }
 
-        private void btnReset_Click(object sender, EventArgs e) { uncheckAll(); refreshTotalPrice(); }
+        private void btnReset_Click(object sender, EventArgs e) { uncheckAll(); refreshTotalPrice(); lstOrder.Items.Clear(); }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            if (price == 0) { lblError.Visible = true; lblError.Text = "메뉴를 선택하고 주문해주세요."; return; }
-            else if (burgerPrice == 0) { lblError.Visible = true; lblError.Text = "사이드만 주문할 수 없습니다."; return; }
+            if (price == 0) { lblTotal.ForeColor = Color.Red; lblTotal.Text = "메뉴를 선택하고 주문해주세요."; return; }
+            else if (burgerPrice == 0) { lblTotal.ForeColor = Color.Red; lblTotal.Text = "사이드만 주문할 수 없습니다."; return; }
+            refreshOrderList();
             MessageBox.Show($"주문이 완료되었습니다.\n주문 금액 : " + price.ToString("N0"), "주문 완료");
             btnReset_Click(sender, e);
+            lstOrder.Items.Clear();
         }
 
         // Keydown
