@@ -12,6 +12,7 @@ namespace BurgerKiosk
         public Form1()
         {
             InitializeComponent();
+            KeyPreview = true;
             Shown += Form1_Shown;
         }
 
@@ -26,8 +27,7 @@ namespace BurgerKiosk
             sidePrice = 0;
             refreshTotalPrice();
 
-            //lblKeyHelp.Text = "위아래 방향키로 메뉴 이동\n스페이스바로 선택/해제\n엔터키로 주문\nR키로 초기화";
-            lblKeyHelp.Visible = false;
+            lblKeyHelp.Text = "위아래 방향키로 메뉴 이동\n스페이스바로 선택/해제\n엔터키로 주문\nR키로 초기화";
         }
 
         private void refreshTotalPrice()
@@ -35,7 +35,7 @@ namespace BurgerKiosk
             price = burgerPrice + sidePrice;
             lblTotal.Text = $"주문 금액 : " + price.ToString("N0") + "원";
             lblTotal.ForeColor = Color.Black;
-            
+            refreshOrderList();
         }
 
         private void refreshOrderList()
@@ -53,6 +53,9 @@ namespace BurgerKiosk
             rbtnHamburger.Checked = false;
             rbtnBulgogi.Checked = false;
             rbtnChicken.Checked = false;
+            rbtnHamburger.TabStop = true;
+            rbtnBulgogi.TabStop = false;
+            rbtnChicken.TabStop = false;
 
             chkFries.Checked = false;
             chkCoke.Checked = false;
@@ -63,6 +66,7 @@ namespace BurgerKiosk
         private void setBurgerOrder()
         {
             burgerPrice = 0;
+            burgerType = "선택하지 않음";
             if (rbtnHamburger.Checked)
             {
                 burgerPrice = 3000;
@@ -127,7 +131,6 @@ namespace BurgerKiosk
         {
             if (price == 0) { lblTotal.ForeColor = Color.Red; lblTotal.Text = "메뉴를 선택하고 주문해주세요."; return; }
             else if (burgerPrice == 0) { lblTotal.ForeColor = Color.Red; lblTotal.Text = "사이드만 주문할 수 없습니다."; return; }
-            refreshOrderList();
             MessageBox.Show($"주문이 완료되었습니다.\n주문 금액 : " + price.ToString("N0"), "주문 완료");
             btnReset_Click(sender, e);
             lstOrder.Items.Clear();
@@ -137,12 +140,20 @@ namespace BurgerKiosk
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
-            { 
-                if (Focus() == false) rbtnHamburger.Focus();  return;
-                
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnOrder.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                return;
             }
-            if (e.KeyCode == Keys.Down) { if (Focus() == false) rbtnHamburger.Focus(); }
+
+            if (e.KeyCode == Keys.R)
+            {
+                btnReset.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }
