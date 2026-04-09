@@ -30,6 +30,7 @@ namespace BurgerKiosk
         {
             price = burgerPrice + sidePrice;
             lblTotal.Text = $"주문 금액 : " + price.ToString("N0");
+            lblError.Visible = false;
         }
 
         private void uncheckAll()
@@ -104,6 +105,8 @@ namespace BurgerKiosk
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
+            if (price == 0) { lblError.Visible = true; lblError.Text = "메뉴를 선택하고 주문해주세요."; return; }
+            else if (burgerPrice == 0) { lblError.Visible = true; lblError.Text = "사이드만 주문할 수 없습니다."; return; }
             MessageBox.Show($"주문이 완료되었습니다.\n주문 금액 : " + price.ToString("N0") , "주문 완료");
             btnReset_Click(sender, e);
         }

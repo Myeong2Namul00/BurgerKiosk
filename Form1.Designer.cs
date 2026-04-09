@@ -46,6 +46,7 @@
             lstOrder = new ListBox();
             btnOrder = new Button();
             btnReset = new Button();
+            lblError = new Label();
             boxBurgerSel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picChicken).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBulgogi).BeginInit();
@@ -225,7 +226,7 @@
             boxList.ForeColor = Color.Red;
             boxList.Location = new Point(827, 116);
             boxList.Name = "boxList";
-            boxList.Size = new Size(406, 436);
+            boxList.Size = new Size(406, 416);
             boxList.TabIndex = 3;
             boxList.TabStop = false;
             boxList.Text = "주문 내역";
@@ -234,7 +235,8 @@
             // 
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("나눔고딕", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            lblTotal.Location = new Point(26, 363);
+            lblTotal.ForeColor = Color.Black;
+            lblTotal.Location = new Point(19, 356);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(174, 43);
             lblTotal.TabIndex = 1;
@@ -277,12 +279,26 @@
             btnReset.UseVisualStyleBackColor = false;
             btnReset.Click += btnReset_Click;
             // 
+            // lblError
+            // 
+            lblError.AutoSize = true;
+            lblError.FlatStyle = FlatStyle.Flat;
+            lblError.Font = new Font("나눔고딕", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblError.ForeColor = Color.Red;
+            lblError.Location = new Point(828, 540);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(111, 21);
+            lblError.TabIndex = 6;
+            lblError.Text = "에러 메시지";
+            lblError.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(1264, 681);
+            Controls.Add(lblError);
             Controls.Add(btnReset);
             Controls.Add(btnOrder);
             Controls.Add(boxList);
@@ -325,5 +341,6 @@
         private ListBox lstOrder;
         private Button btnOrder;
         private Button btnReset;
+        private Label lblError;
     }
 }
